@@ -1,3 +1,3 @@
 /* Java-Projects
-* Java projects of mine
+* Java projects go here woooo
 */

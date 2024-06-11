@@ -1,0 +1,84 @@
+package RockPaperScissors;
+import java.util.Scanner;
+
+public class items{
+    public static void main(String[]args){
+        Throw[] selection = {new Rock(), new Paper(), new Scissors()};
+        Throw inp = null; 
+
+        Scanner sc = new Scanner (System.in);
+        System.out.println("Make your choice: ");
+        String input = sc.next();
+        
+        if(input.equals("Rock")){
+            inp = new Rock();  
+        }
+        if(input.equals("Paper")){
+            inp = new Paper();
+        }
+        if(input.equals("Scissors")){
+            inp = new Scissors();
+        }
+
+        int max = 2;        //picking random answer
+        int min = 0;
+        int range = max - min + 1;
+        int temp = (int)(Math.random() * range)+ min;  
+        Throw answer = selection[temp];
+        
+        System.out.println("In 3...2...1!" + "\n" + answer.toString());
+
+        //if its a tie
+         if(inp.getClass() == answer.getClass()){
+            System.out.println("It's a tie!");
+         }else if (inp.beats(answer)) {
+            System.out.println("You win!");
+        } else {
+            System.out.println("You lose.");
+
+    }
+}
+
+interface Throw{
+    String shoot(String a);
+    String toString();
+    boolean beats(Throw other);
+}
+
+static class Rock implements Throw{
+    public String shoot(String a){
+        String rock = "rock";
+        return rock;
+    }
+    public String toString(){
+        return "Rock!";
+    }
+    public boolean beats(Throw other) {    
+        return !(other instanceof Paper);
+    }
+}
+static class Paper implements Throw{
+    public String shoot(String a){
+        String paper = "paper";
+        return paper;
+    }
+    public String toString(){
+        return "Paper!";
+    }
+    public boolean beats(Throw other) {    
+        return !(other instanceof Scissors);
+    }
+}
+static class Scissors implements Throw{
+    public String shoot(String a){
+        String sci = "scissors";
+        return sci;
+    }
+    public String toString(){
+        return "Scissors!";
+    }
+    public boolean beats(Throw other) {    
+        return !(other instanceof Rock);
+    }
+}
+}
